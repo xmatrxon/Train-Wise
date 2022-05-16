@@ -174,7 +174,7 @@ header p {
 header .hero-img {
   position: relative;
   height: 100vh;
-  background-image: url("../public/img/weight-lifting-g6594370fb_640.jpg");
+  background-image: url("../img/weight-lifting-g6594370fb_640.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -392,13 +392,13 @@ header .fa-chevron-down {
     font-size: 18px;
   }
   .contact {
-    background-image: url("../public/img/machines-gbf773ef36_1920.jpg");
+    background-image: url("../img/machines-gbf773ef36_1920.jpg");
   }
 }
 
 @media (min-width: 1200px) {
   header .hero-img {
-    background-image: url("../public/img/weight-lifting-g6e80b59f6_1920.jpg");
+    background-image: url("../img/weight-lifting-g6e80b59f6_1920.jpg");
   }
 }
 /*# sourceMappingURL=main.css.map */
