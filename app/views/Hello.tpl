@@ -128,3 +128,41 @@
 				</div>
 			</section>
 {/block}
+
+{block name=content}
+			<section id="contact" class="contact py-5">
+				<h2>kontakt</h2>
+				<div class="underline"></div>
+				<div class="container">
+					<div class="row text-center contact-us">
+						<div class="col-sm-6 col-lg-4 contact-item order-1">
+							<h3>TrainWise Katowice</h3>
+							<p>ul. Katowicka 0</p>
+							<p>00-000 Katowice</p>
+							<p>+48 123 456 789</p>
+							<p>mail@mail.pl</p>
+						</div>
+						<div class="col-lg-4 order-0 contact-item order-lg-1">
+							<h3>social media</h3>
+							<div class="social-media">
+								<a href="#"><i class="fab fa-facebook"></i></a
+								><a href="#"><i class="fab fa-twitter"></i></a
+								><a href="#"><i class="fab fa-linkedin-in"></i></a>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-4 contact-item order-1">
+							<h3>TrainWise Warszawa</h3>
+							<p>ul. Warszawska 0</p>
+							<p>00-000 Warszawa</p>
+							<p>+44 123 456 789</p>
+							<p>mail-warszawa@mail.pl</p>
+						</div>
+					</div>
+				</div>
+				<div class="content-shadow"></div>
+			</section>
+					</main>
+		<footer class="bg-dark text-light py-4 text-center">
+			<p class="mb-0">&copy; <span class="footer__year"></span> TrainWise</p>
+		</footer>
+{/block}

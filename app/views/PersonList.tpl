@@ -6,7 +6,7 @@
 <form action="{$conf->action_url}personList">
 <legend>Opcje wyszukiwania</legend>
   <div class="mb-3">
-    <label for="surnam" class="form-label">Nazwisko</label>
+    <label for="surname" class="form-label">Nazwisko</label>
     <input type="text" class="form-control" name="sf_surname" id="surname" value="{$searchForm->surname}">
   </div>
   <button type="submit" class="btn btn-primary">Filtruj</button>
@@ -30,16 +30,16 @@
 	</tr>
 </thead>
 <tbody>
-{foreach $people as $p}
+{foreach $klient as $p}
 {strip}
 	<tr>
-		<td>{$p["name"]}</td>
-		<td>{$p["surname"]}</td>
-		<td>{$p["birthdate"]}</td>
+		<td>{$p["imie"]}</td>
+		<td>{$p["nazwisko"]}</td>
+		<td>{$p["pesel"]}</td>
 		<td>
-			<a class="btn btn-warning" href="{$conf->action_url}personEdit/{$p['idperson']}">Edytuj</a>
+			<a class="btn btn-warning" href="{$conf->action_url}personEdit/{$p['id_klienta']}">Edytuj</a>
 			&nbsp;
-			<a class="btn btn-danger" href="{$conf->action_url}personDelete/{$p['idperson']}">Usuń</a>
+			<a class="btn btn-danger" href="{$conf->action_url}personDelete/{$p['id_klienta']}">Usuń</a>
 		</td>
 	</tr>
 {/strip}

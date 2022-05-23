@@ -56,12 +56,12 @@ class PersonListCtrl {
         //wykonanie zapytania
 
         try {
-            $this->records = App::getDB()->select("person", [
-                "idperson",
-                "name",
-                "surname",
-                "birthdate",
-                    ], $where);
+            $this->records = App::getDB()->select("klient", [
+                "id_klienta",
+                "imie",
+                "nazwisko",
+                "pesel",
+                    ]);
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
             if (App::getConf()->debug)
@@ -70,7 +70,7 @@ class PersonListCtrl {
 
         // 4. wygeneruj widok
         App::getSmarty()->assign('searchForm', $this->form); // dane formularza (wyszukiwania w tym wypadku)
-        App::getSmarty()->assign('people', $this->records);  // lista rekordów z bazy danych
+        App::getSmarty()->assign('klient', $this->records);  // lista rekordów z bazy danych
         App::getSmarty()->display('PersonList.tpl');
     }
 

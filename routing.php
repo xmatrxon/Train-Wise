@@ -9,6 +9,8 @@ App::getRouter()->setLoginRoute('login'); #action to forward if no permissions
 Utils::addRoute('login', 'LoginCtrl');
 Utils::addRoute('logout', 'LoginCtrl');
 
+Utils::addRoute('register', 'RegisterCtrl');
+
 Utils::addRoute('personList', 'PersonListCtrl');
 
 Utils::addRoute('personNew', 'PersonEditCtrl', ["user", "admin"]);

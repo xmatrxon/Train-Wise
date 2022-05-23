@@ -110,6 +110,11 @@ h2 {
   text-transform: uppercase;
 }
 
+.loginForm {
+  margin-top: 5%;
+  /* height: 82vh; */
+}
+
 .underline {
   margin: 0 auto 40px;
   width: 60px;
@@ -364,6 +369,10 @@ header .fa-chevron-down {
 
 .contact .contact-us .contact-item .social-media a:hover {
   color: #ddd;
+}
+
+footer {
+  bottom: 0;
 }
 
 @media (min-width: 375px) {

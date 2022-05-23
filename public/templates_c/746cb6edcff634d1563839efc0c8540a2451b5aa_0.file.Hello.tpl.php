@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-16 19:17:48
+/* Smarty version 4.1.0, created on 2022-05-23 18:39:30
   from 'C:\xampp\htdocs\trainwise\app\views\Hello.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6282873c491e99_65351524',
+  'unifunc' => 'content_628bb8c248afd2_36100511',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '746cb6edcff634d1563839efc0c8540a2451b5aa' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\Hello.tpl',
-      1 => 1652721407,
+      1 => 1653323962,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,28 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6282873c491e99_65351524 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628bb8c248afd2_36100511 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4794998596282873c490891_08772070', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2003981705628bb8c2487e27_01962256', 'main');
+?>
+
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1159565469628bb8c24895e5_84924985', 'content');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "indexView.tpl");
 }
 /* {block 'main'} */
-class Block_4794998596282873c490891_08772070 extends Smarty_Internal_Block
+class Block_2003981705628bb8c2487e27_01962256 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_4794998596282873c490891_08772070',
+    0 => 'Block_2003981705628bb8c2487e27_01962256',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -172,4 +177,55 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'main'} */
+/* {block 'content'} */
+class Block_1159565469628bb8c24895e5_84924985 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_1159565469628bb8c24895e5_84924985',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
+			<section id="contact" class="contact py-5">
+				<h2>kontakt</h2>
+				<div class="underline"></div>
+				<div class="container">
+					<div class="row text-center contact-us">
+						<div class="col-sm-6 col-lg-4 contact-item order-1">
+							<h3>TrainWise Katowice</h3>
+							<p>ul. Katowicka 0</p>
+							<p>00-000 Katowice</p>
+							<p>+48 123 456 789</p>
+							<p>mail@mail.pl</p>
+						</div>
+						<div class="col-lg-4 order-0 contact-item order-lg-1">
+							<h3>social media</h3>
+							<div class="social-media">
+								<a href="#"><i class="fab fa-facebook"></i></a
+								><a href="#"><i class="fab fa-twitter"></i></a
+								><a href="#"><i class="fab fa-linkedin-in"></i></a>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-4 contact-item order-1">
+							<h3>TrainWise Warszawa</h3>
+							<p>ul. Warszawska 0</p>
+							<p>00-000 Warszawa</p>
+							<p>+44 123 456 789</p>
+							<p>mail-warszawa@mail.pl</p>
+						</div>
+					</div>
+				</div>
+				<div class="content-shadow"></div>
+			</section>
+					</main>
+		<footer class="bg-dark text-light py-4 text-center">
+			<p class="mb-0">&copy; <span class="footer__year"></span> TrainWise</p>
+		</footer>
+<?php
+}
+}
+/* {/block 'content'} */
 }
