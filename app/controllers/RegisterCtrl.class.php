@@ -18,6 +18,7 @@ class RegisterCtrl {
     }
 
     public function validate() {
+        $this->form->id = ParamUtils::getFromRequest('id');
         $this->form->imie = ParamUtils::getFromRequest('imie');
         $this->form->nazwisko = ParamUtils::getFromRequest('nazwisko');
         $this->form->email = ParamUtils::getFromRequest('email');
@@ -25,8 +26,8 @@ class RegisterCtrl {
         $this->form->pesel = ParamUtils::getFromRequest('pesel');
         $this->form->pass = ParamUtils::getFromRequest('pass');
 
-        //nie ma sensu walidować dalej, gdy brak parametrów
-        if (!isset($this->form->imie))
+
+        if (App::getMessages()->isError())
             return false;
 
         // sprawdzenie, czy potrzebne wartości zostały przekazane
@@ -61,13 +62,14 @@ class RegisterCtrl {
     }
 
     public function action_register() {
-        if ($this->validate()) {
-            
+        if ($this->validate()) {       
 try {
-            $this->records = App::getDB()->insert("klient", [
+
+            App::getDB()->insert("klient", [
+                "id_klienta" => $this->form->id,
                 "imie" => $this->form->imie,
                 "nazwisko" => $this->form->nazwisko,
-                "nrtel" => $this->form->nrtel,
+                "nr_tel" => $this->form->nrtel,
                 "pesel" => $this->form->pesel,
                     ]);
         } catch (\PDOException $e) {
@@ -77,19 +79,11 @@ try {
         }
 
         // 4. wygeneruj widok
-        App::getSmarty()->assign('klient', $this->records);  // lista rekordów z bazy danych
-
-            Utils::addErrorMessage('Poprawnie zalogowano do systemu');
-            App::getRouter()->redirectTo("personList");
+        App::getRouter()->forwardTo('personList');
         } else {
             //niezalogowany => pozostań na stronie logowania
             $this->generateView();
         }
-    }
-
-        public function action_personList() {
-
-        
     }
 
     public function generateView() {
