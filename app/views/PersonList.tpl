@@ -3,11 +3,11 @@
 {block name=main}
 
 <div class="container mt-5">
-<form action="{$conf->action_url}personList">
+<form action="{$conf->action_url}personList" class="searchForm">
 <legend>Opcje wyszukiwania</legend>
   <div class="mb-3">
-    <label for="surname" class="form-label">Nazwisko</label>
-    <input type="text" class="form-control" name="sf_surname" id="surname" value="{$searchForm->surname}">
+    <label for="nazwisko" class="form-label">Nazwisko</label>
+    <input type="text" class="form-control" name="sf_nazwisko" id="nazwisko" value="{$searchForm->nazwisko}">
   </div>
   <button type="submit" class="btn btn-primary">Filtruj</button>
 </form>	
@@ -23,10 +23,12 @@
 <table id="tab_people" class="table">
 <thead>
 	<tr>
-		<th>imię</th>
-		<th>nazwisko</th>
-		<th>data ur.</th>
-		<th>opcje</th>
+		<th>IMIE</th>
+		<th>NAZWISKO</th>
+		<th>NR TEL</th>
+		<th>PESEL</th>
+		<th>OPCJE</th>
+		<th>KARNET</th>
 	</tr>
 </thead>
 <tbody>
@@ -35,6 +37,7 @@
 	<tr>
 		<td>{$p["imie"]}</td>
 		<td>{$p["nazwisko"]}</td>
+		<td>{$p["nr_tel"]}</td>
 		<td>{$p["pesel"]}</td>
 		<td>
 			<a class="btn btn-warning" href="{$conf->action_url}personEdit/{$p['id_klienta']}">Edytuj</a>

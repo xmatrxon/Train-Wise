@@ -20,7 +20,7 @@ class PersonListCtrl {
     public function validate() {
         // 1. sprawdzenie, czy parametry zostały przekazane
         // - nie trzeba sprawdzać
-        $this->form->surname = ParamUtils::getFromRequest('sf_surname');
+        $this->form->nazwisko = ParamUtils::getFromRequest('sf_nazwisko');
 
         // 2. sprawdzenie poprawności przekazanych parametrów
         // - nie trzeba sprawdzać
@@ -37,8 +37,8 @@ class PersonListCtrl {
 
         // 2. Przygotowanie mapy z parametrami wyszukiwania (nazwa_kolumny => wartość)
         $search_params = []; //przygotowanie pustej struktury (aby była dostępna nawet gdy nie będzie zawierała wierszy)
-        if (isset($this->form->surname) && strlen($this->form->surname) > 0) {
-            $search_params['surname[~]'] = $this->form->surname . '%'; // dodanie symbolu % zastępuje dowolny ciąg znaków na końcu
+        if (isset($this->form->nazwisko) && strlen($this->form->nazwisko) > 0) {
+            $search_params['nazwisko[~]'] = $this->form->nazwisko . '%'; // dodanie symbolu % zastępuje dowolny ciąg znaków na końcu
         }
 
         // 3. Pobranie listy rekordów z bazy danych
@@ -52,7 +52,7 @@ class PersonListCtrl {
             $where = &$search_params;
         }
         //dodanie frazy sortującej po nazwisku
-        $where ["ORDER"] = "surname";
+        $where ["ORDER"] = "nazwisko";
         //wykonanie zapytania
 
         try {
@@ -60,8 +60,9 @@ class PersonListCtrl {
                 "id_klienta",
                 "imie",
                 "nazwisko",
+                "nr_tel",
                 "pesel",
-                    ]);
+                    ], $where);
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
             if (App::getConf()->debug)

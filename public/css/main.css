@@ -115,6 +115,10 @@ h2 {
   /* height: 82vh; */
 }
 
+.searchForm {
+  margin-top: 10%;
+}
+
 .underline {
   margin: 0 auto 40px;
   width: 60px;

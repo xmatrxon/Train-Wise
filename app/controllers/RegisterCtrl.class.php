@@ -66,7 +66,6 @@ class RegisterCtrl {
 try {
 
             App::getDB()->insert("klient", [
-                "id_klienta" => $this->form->id,
                 "imie" => $this->form->imie,
                 "nazwisko" => $this->form->nazwisko,
                 "nr_tel" => $this->form->nrtel,
