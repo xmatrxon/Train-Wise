@@ -13,16 +13,16 @@
             <input type="text" class="form-control" id="nazwisko" name="nazwisko" value="{$form->nazwisko}">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">E-mail: </label>
-            <input type="text" class="form-control" id="email" name="email" value="{$form->email}">
-        </div>
-        <div class="mb-3">
             <label for="nrtel" class="form-label">Nr. telefonu: </label>
             <input type="text" class="form-control" id="nrtel" name="nrtel" value="{$form->nrtel}">
         </div>
         <div class="mb-3">
             <label for="pesel" class="form-label">PESEL: </label>
             <input type="text" class="form-control" id="pesel" name="pesel" value="{$form->pesel}">
+        </div>
+        <div class="mb-3">
+            <label for="login" class="form-label">Login: </label>
+            <input type="text" class="form-control" id="login" name="login" value="{$form->login}">
         </div>
         <div class="mb-3">
             <label for="id_pass" class="form-label">Hasło: </label>

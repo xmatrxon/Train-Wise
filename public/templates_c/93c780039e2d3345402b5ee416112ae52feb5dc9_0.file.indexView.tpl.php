@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-23 18:39:25
+/* Smarty version 4.1.0, created on 2022-05-30 13:13:22
   from 'C:\xampp\htdocs\trainwise\app\views\templates\indexView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_628bb8bdf1c134_00787176',
+  'unifunc' => 'content_6294a6d2252a19_86417638',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '93c780039e2d3345402b5ee416112ae52feb5dc9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\templates\\indexView.tpl',
-      1 => 1653323957,
+      1 => 1653908986,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628bb8bdf1c134_00787176 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6294a6d2252a19_86417638 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -69,11 +69,17 @@ login" class="nav-link link login-btn">Zaloguj</a>
 			</div>
 		</nav>
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_159939542628bb8bdf153b6_46146919', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13175726916294a6d22411f5_69430926', 'main');
 ?>
 
+
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1502561500628bb8bdf18756_25589800', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17314877386294a6d2242618_25353444', 'messages');
+?>
+
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19685190156294a6d224f4d6_86673987', 'content');
 ?>
 
 		<?php echo '<script'; ?>
@@ -94,12 +100,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1502561500628bb8bd
 </html>
 <?php }
 /* {block 'main'} */
-class Block_159939542628bb8bdf153b6_46146919 extends Smarty_Internal_Block
+class Block_13175726916294a6d22411f5_69430926 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_159939542628bb8bdf153b6_46146919',
+    0 => 'Block_13175726916294a6d22411f5_69430926',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -108,13 +114,50 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'main'} */
+/* {block 'messages'} */
+class Block_17314877386294a6d2242618_25353444 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'messages' => 
+  array (
+    0 => 'Block_17314877386294a6d2242618_25353444',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
+
+<?php if ($_smarty_tpl->tpl_vars['msgs']->value->isMessage()) {?>
+<div class="messages bottom-margin">
+	<ul>
+	<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['msgs']->value->getMessages(), 'msg');
+$_smarty_tpl->tpl_vars['msg']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['msg']->value) {
+$_smarty_tpl->tpl_vars['msg']->do_else = false;
+?>
+	<li class="msg <?php if ($_smarty_tpl->tpl_vars['msg']->value->isError()) {?>error<?php }?> <?php if ($_smarty_tpl->tpl_vars['msg']->value->isWarning()) {?>warning<?php }?> <?php if ($_smarty_tpl->tpl_vars['msg']->value->isInfo()) {?>info<?php }?>"><?php echo $_smarty_tpl->tpl_vars['msg']->value->text;?>
+</li>
+	<?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+	</ul>
+</div>
+<?php }?>
+
+
+
+<?php
+}
+}
+/* {/block 'messages'} */
 /* {block 'content'} */
-class Block_1502561500628bb8bdf18756_25589800 extends Smarty_Internal_Block
+class Block_19685190156294a6d224f4d6_86673987 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1502561500628bb8bdf18756_25589800',
+    0 => 'Block_19685190156294a6d224f4d6_86673987',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-23 20:40:18
+/* Smarty version 4.1.0, created on 2022-05-30 16:02:29
   from 'C:\xampp\htdocs\trainwise\app\views\RegisterView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_628bd512043495_85003198',
+  'unifunc' => 'content_6294ce75015f29_26433380',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8d9e51704269816da0916991b3f75ed72971047d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\RegisterView.tpl',
-      1 => 1653331087,
+      1 => 1653919275,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628bd512043495_85003198 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6294ce75015f29_26433380 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_113083985628bd512038886_63273144', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8615998256294ce7500af64_66685756', 'main');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "indexView.tpl");
 }
 /* {block 'main'} */
-class Block_113083985628bd512038886_63273144 extends Smarty_Internal_Block
+class Block_8615998256294ce7500af64_66685756 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_113083985628bd512038886_63273144',
+    0 => 'Block_8615998256294ce7500af64_66685756',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -57,11 +57,6 @@ register" method="post" class="loginForm">
 ">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">E-mail: </label>
-            <input type="text" class="form-control" id="email" name="email" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->email;?>
-">
-        </div>
-        <div class="mb-3">
             <label for="nrtel" class="form-label">Nr. telefonu: </label>
             <input type="text" class="form-control" id="nrtel" name="nrtel" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->nrtel;?>
 ">
@@ -69,6 +64,11 @@ register" method="post" class="loginForm">
         <div class="mb-3">
             <label for="pesel" class="form-label">PESEL: </label>
             <input type="text" class="form-control" id="pesel" name="pesel" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->pesel;?>
+">
+        </div>
+        <div class="mb-3">
+            <label for="login" class="form-label">Login: </label>
+            <input type="text" class="form-control" id="login" name="login" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->login;?>
 ">
         </div>
         <div class="mb-3">
