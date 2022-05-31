@@ -44,11 +44,6 @@ class PersonEditCtrl {
 
         // 2. sprawdzenie poprawności przekazanych parametrów
 
-        $d = \DateTime::createFromFormat('Y-m-d', $this->form->birthdate);
-        if ($d === false) {
-            Utils::addErrorMessage('Zły format daty. Przykład: 2015-12-20');
-        }
-
         return !App::getMessages()->isError();
     }
 
@@ -70,14 +65,14 @@ class PersonEditCtrl {
         if ($this->validateEdit()) {
             try {
                 // 2. odczyt z bazy danych osoby o podanym ID (tylko jednego rekordu)
-                $record = App::getDB()->get("person", "*", [
-                    "idperson" => $this->form->id
+                $record = App::getDB()->get("klient", "*", [
+                    "id_klienta" => $this->form->id
                 ]);
                 // 2.1 jeśli osoba istnieje to wpisz dane do obiektu formularza
-                $this->form->id = $record['idperson'];
-                $this->form->name = $record['name'];
-                $this->form->surname = $record['surname'];
-                $this->form->birthdate = $record['birthdate'];
+                $this->form->id = $record['id_klienta'];
+                $this->form->name = $record['imie'];
+                $this->form->surname = $record['nazwisko'];
+                $this->form->birthdate = $record['nr_tel'];
             } catch (\PDOException $e) {
                 Utils::addErrorMessage('Wystąpił błąd podczas odczytu rekordu');
                 if (App::getConf()->debug)
@@ -90,23 +85,23 @@ class PersonEditCtrl {
     }
 
     public function action_personDelete() {
-        // 1. walidacja id osoby do usuniecia
         if ($this->validateEdit()) {
 
+        $search_params = [];
+        $search_params['id_klienta'] = $this->form->id;
+        $where = &$search_params;
+
             try {
-                // 2. usunięcie rekordu
-                App::getDB()->delete("person", [
-                    "idperson" => $this->form->id
-                ]);
-                Utils::addInfoMessage('Pomyślnie usunięto rekord');
+                App::getDB()->update("klient", [
+                    "aktywny" => 0
+                ],$where);
+                Utils::addInfoMessage('Pomyślnie deaktywowano użytkownika');
             } catch (\PDOException $e) {
                 Utils::addErrorMessage('Wystąpił błąd podczas usuwania rekordu');
                 if (App::getConf()->debug)
                     Utils::addErrorMessage($e->getMessage());
             }
         }
-
-        // 3. Przekierowanie na stronę listy osób
         App::getRouter()->forwardTo('personList');
     }
 
@@ -135,12 +130,12 @@ class PersonEditCtrl {
                     }
                 } else {
                     //2.2 Edycja rekordu o danym ID
-                    App::getDB()->update("person", [
-                        "name" => $this->form->name,
-                        "surname" => $this->form->surname,
-                        "birthdate" => $this->form->birthdate
+                    App::getDB()->update("klient", [
+                        "imie" => $this->form->name,
+                        "nazwisko" => $this->form->surname,
+                        "nr_tel" => $this->form->birthdate
                             ], [
-                        "idperson" => $this->form->id
+                        "id_klienta" => $this->form->id
                     ]);
                 }
                 Utils::addInfoMessage('Pomyślnie zapisano rekord');

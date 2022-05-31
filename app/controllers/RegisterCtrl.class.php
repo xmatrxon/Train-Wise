@@ -68,22 +68,10 @@ try {
                 "nazwisko" => $this->form->nazwisko,
                 "nr_tel" => $this->form->nrtel,
                 "pesel" => $this->form->pesel,
-                    ]);
-
-        $search_params = [];
-        $search_params['pesel'] = $this->form->pesel;
-        $where = &$search_params;
-
-           $id = App::getDB()->get("klient",
-                "id_klienta",
-                   $where);
-
-            App::getDB()->insert("klient_internet", [
-                "ID_klienta" => $id,
                 "login" => $this->form->login,
                 "haslo" => $this->form->pass,
-                    ]);       
-
+                    ]);
+    
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
             if (App::getConf()->debug)
@@ -98,7 +86,7 @@ try {
 
     public function generateView() {
         App::getSmarty()->assign('form', $this->form);
-        App::getSmarty()->display('RegisterView.tpl');
+        App::getSmarty()->display('LoginView.tpl');
     }
 
 }

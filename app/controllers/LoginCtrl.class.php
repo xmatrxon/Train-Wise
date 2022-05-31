@@ -40,10 +40,10 @@ class LoginCtrl {
         $where = &$search_params;
 
         try {
-            $rola = App::getDB()->get("klient_internet", 
+            $rola = App::getDB()->get("klient", 
                 "rola"
                     , $where);
-            $password = App::getDB()->get("klient_internet", 
+            $password = App::getDB()->get("klient", 
                 "haslo"
                     , $where);
         } catch (\PDOException $e) {

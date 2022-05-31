@@ -11,6 +11,7 @@ class PersonListCtrl {
 
     private $form;
     private $records;
+    public $karnet;
 
     public function __construct() {
         $this->form = new PersonSearchForm();
@@ -39,13 +40,20 @@ class PersonListCtrl {
         $where ["ORDER"] = "nazwisko";
 
         try {
-            $this->records = App::getDB()->select("klient", [
-                "id_klienta",
-                "imie",
-                "nazwisko",
-                "nr_tel",
-                "pesel",
+            $this->records = App::getDB()->select("czlonkostwo", [
+                "[<]klient"=>["id_klienta" => "ID_klienta"],
+                "[>]karnet"=>["ID_karnetu" => "ID_karnetu"]],[
+                "klient.id_klienta",
+                "klient.imie",
+                "klient.nazwisko",
+                "klient.nr_tel",
+                "klient.pesel",
+                "klient.aktywny",
+                "czlonkostwo.Data_rozpoczecia",
+                "czlonkostwo.Data_zakonczenia",
+                "karnet.Nazwa_karnetu"
                     ], $where);
+        
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
             if (App::getConf()->debug)

@@ -16,10 +16,6 @@
 
 {block name=content}
 <div class="container mt-5">
-<div>
-<a class="btn btn-primary" href="{$conf->action_root}personNew">+ Nowa osoba</a>
-</div>	
-
 <table id="tab_people" class="table">
 <thead>
 	<tr>
@@ -27,23 +23,34 @@
 		<th>NAZWISKO</th>
 		<th>NR TEL</th>
 		<th>PESEL</th>
-		<th>OPCJE</th>
 		<th>KARNET</th>
+		<th>OPCJE</th>
 	</tr>
 </thead>
 <tbody>
 {foreach $klient as $p}
 {strip}
 	<tr>
+	{if $p["aktywny"] == 1}
 		<td>{$p["imie"]}</td>
 		<td>{$p["nazwisko"]}</td>
 		<td>{$p["nr_tel"]}</td>
 		<td>{$p["pesel"]}</td>
 		<td>
+		{if $p["Nazwa_karnetu"] != ""}
+		Nazwa: {$p["Nazwa_karnetu"]}
+		</br>
+		Od: {$p["Data_rozpoczecia"]}
+		</br>
+		Do: {$p["Data_zakonczenia"]}		
+		{/if}
+		</td>
+		<td>
 			<a class="btn btn-warning" href="{$conf->action_url}personEdit/{$p['id_klienta']}">Edytuj</a>
 			&nbsp;
-			<a class="btn btn-danger" href="{$conf->action_url}personDelete/{$p['id_klienta']}">Usuń</a>
+			<a class="btn btn-danger" href="{$conf->action_url}personDelete/{$p['id_klienta']}">Deaktywacja</a>
 		</td>
+	{/if}
 	</tr>
 {/strip}
 {/foreach}

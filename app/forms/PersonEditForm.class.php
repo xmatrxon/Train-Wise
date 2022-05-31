@@ -4,7 +4,9 @@ namespace app\forms;
 
 class PersonEditForm {
 	public $id;
-	public $name;
-	public $surname;
-	public $birthdate;
+	public $imie;
+	public $nazwisko;
+	public $nrtel;
+	public $login;
+	public $pass;
 }
