@@ -13,7 +13,9 @@ Utils::addRoute('register', 'RegisterCtrl');
 
 Utils::addRoute('personList', 'PersonListCtrl');
 
-Utils::addRoute('personEdit', 'PersonEditCtrl', ["admin"]);
+Utils::addRoute('userInfo', 'UserInfoCtrl');
+
+Utils::addRoute('personEdit', 'PersonEditCtrl', ["user", "admin"]);
 Utils::addRoute('personSave', 'PersonEditCtrl', ["user", "admin"]);
 Utils::addRoute('personDelete', 'PersonEditCtrl', ["admin"]);
 

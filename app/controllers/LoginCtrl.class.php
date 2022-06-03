@@ -6,6 +6,7 @@ use core\App;
 use core\Utils;
 use core\RoleUtils;
 use core\ParamUtils;
+use core\SessionUtils;
 use app\forms\LoginForm;
 
 class LoginCtrl {
@@ -39,6 +40,10 @@ class LoginCtrl {
         $search_params['login'] = $this->form->login;
         $where = &$search_params;
 
+        SessionUtils::store('nazwa', $this->form->login);
+        
+
+
         try {
             $rola = App::getDB()->get("klient", 
                 "rola"
@@ -51,6 +56,8 @@ class LoginCtrl {
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }
+
+        SessionUtils::store('rola', $rola);
 
         if($password == $this->form->pass) {
             if ($rola == 'admin') {
@@ -72,7 +79,14 @@ class LoginCtrl {
     public function action_login() {
         if ($this->validate()) {
             Utils::addErrorMessage('Poprawnie zalogowano do systemu');
-            App::getRouter()->redirectTo("personList");
+
+             if (RoleUtils::inRole("admin")) {
+                App::getRouter()->redirectTo("personList");
+            } else {
+                App::getRouter()->redirectTo("userInfo");
+        }
+
+            
         } else {
             $this->generateView();
         }
@@ -80,6 +94,8 @@ class LoginCtrl {
 
     public function action_logout() {
         session_destroy();
+        SessionUtils::remove('nazwa');
+        SessionUtils::remove('rola');
         App::getRouter()->redirectTo('hello');
     }
 

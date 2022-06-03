@@ -115,6 +115,10 @@ h2 {
   /* height: 82vh; */
 }
 
+.login {
+  height: 100vh;
+}
+
 .searchForm {
   margin-top: 10%;
 }

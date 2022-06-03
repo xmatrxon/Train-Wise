@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-31 09:31:43
+/* Smarty version 4.1.0, created on 2022-06-03 23:42:42
   from 'C:\xampp\htdocs\trainwise\app\views\PersonEdit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6295c45f07be82_18079912',
+  'unifunc' => 'content_629a80520e63b5_68427258',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd5d4bb142113209d1c2526f4c82316ceef4f63bf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\PersonEdit.tpl',
-      1 => 1653981639,
+      1 => 1654292528,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6295c45f07be82_18079912 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629a80520e63b5_68427258 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11211601106295c45f06fa83_53930613', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1800790123629a80520d55a1_02439970', 'main');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "indexView.tpl");
 }
 /* {block 'main'} */
-class Block_11211601106295c45f06fa83_53930613 extends Smarty_Internal_Block
+class Block_1800790123629a80520d55a1_02439970 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_11211601106295c45f06fa83_53930613',
+    0 => 'Block_1800790123629a80520d55a1_02439970',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -76,8 +76,18 @@ personSave" method="post">
 ">
   </div>
   <button type="submit" class="btn btn-primary">Zapisz</button>
-  <a class="btn btn-secondary" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+
+
+
+
+<?php if ($_smarty_tpl->tpl_vars['rola']->value == "admin") {?>
+<a class="btn btn-secondary" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 personList">Powrót</a>
+<?php } else { ?>
+<a class="btn btn-secondary" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+userInfo">Powrót</a>
+<?php }?>
+  
   <input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->id;?>
 ">
 </form>

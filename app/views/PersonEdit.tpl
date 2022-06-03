@@ -27,7 +27,16 @@
     <input type="text" class="form-control" id="pass" name="pass" value="{$form->pass}">
   </div>
   <button type="submit" class="btn btn-primary">Zapisz</button>
-  <a class="btn btn-secondary" href="{$conf->action_root}personList">Powrót</a>
+
+
+
+
+{if $rola == "admin"}
+<a class="btn btn-secondary" href="{$conf->action_root}personList">Powrót</a>
+{else}
+<a class="btn btn-secondary" href="{$conf->action_root}userInfo">Powrót</a>
+{/if}
+  
   <input type="hidden" name="id" value="{$form->id}">
 </form>
 </div>
