@@ -45,7 +45,7 @@ class KarnetCtrl {
                     ]);
                     App::getRouter()->redirectTo("userInfo");
         } catch (\PDOException $e) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
+            Utils::addErrorMessage('Wystąpił błąd podczas wstawiania rekordów');
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }
@@ -60,7 +60,7 @@ class KarnetCtrl {
                     ]);
                     App::getRouter()->redirectTo("userInfo");
         } catch (\PDOException $e) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
+            Utils::addErrorMessage('Wystąpił błąd podczas wstawiania rekordów');
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }
@@ -75,7 +75,7 @@ class KarnetCtrl {
                     ]);
                     App::getRouter()->redirectTo("userInfo");
         } catch (\PDOException $e) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
+            Utils::addErrorMessage('Wystąpił błąd podczas wstawiania rekordów');
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }

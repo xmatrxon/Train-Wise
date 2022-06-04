@@ -11,19 +11,15 @@ use app\forms\PersonEditForm;
 
 class PersonEditCtrl {
 
-    private $form; //dane formularza
+    private $form;
     public $cos;
     
 
-    public function __construct() {
-        //stworzenie potrzebnych obiektów
-        
+    public function __construct() { 
         $this->form = new PersonEditForm();
     }
 
-    // Walidacja danych przed zapisem (nowe dane lub edycja).
     public function validateSave() {
-        //0. Pobranie parametrów z walidacją
         $this->form->id = ParamUtils::getFromRequest('id', true, 'Błędne wywołanie aplikacji');
         $this->form->imie = ParamUtils::getFromRequest('imie', true, 'Błędne wywołanie aplikacji');
         $this->form->nazwisko = ParamUtils::getFromRequest('nazwisko', true, 'Błędne wywołanie aplikacji');
@@ -34,7 +30,6 @@ class PersonEditCtrl {
         if (App::getMessages()->isError())
             return false;
 
-        // 1. sprawdzenie czy wartości wymagane nie są puste
         if (empty(trim($this->form->imie))) {
             Utils::addErrorMessage('Wprowadź imię');
         }
@@ -54,15 +49,10 @@ class PersonEditCtrl {
         if (App::getMessages()->isError())
             return false;
 
-        // 2. sprawdzenie poprawności przekazanych parametrów
-
         return !App::getMessages()->isError();
     }
 
-    //validacja danych przed wyswietleniem do edycji
     public function validateEdit() {
-        //pobierz parametry na potrzeby wyswietlenia danych do edycji
-        //z widoku listy osób (parametr jest wymagany)
         $this->form->id = ParamUtils::getFromCleanURL(1, true, 'Błędne wywołanie aplikacji');
         return !App::getMessages()->isError();
     }
@@ -71,49 +61,36 @@ class PersonEditCtrl {
         $this->generateView();
     }
 
-    //wysiweltenie rekordu do edycji wskazanego parametrem 'id'
     public function action_personEdit() {
-        // 1. walidacja id osoby do edycji
-
-        
-
-                    if ($this->validateEdit()) {
+        if ($this->validateEdit()) {
             try {
-                // 2. odczyt z bazy danych osoby o podanym ID (tylko jednego rekordu)
-                $record = App::getDB()->get("klient", "*", [
-                    "id_klienta" => $this->form->id
-                ]);
-                // 2.1 jeśli osoba istnieje to wpisz dane do obiektu formularza
+                $record = App::getDB()->get("klient", "*", ["id_klienta" => $this->form->id]);
                 $this->form->id = $record['id_klienta'];
                 $this->form->imie = $record['imie'];
                 $this->form->nazwisko = $record['nazwisko'];
                 $this->form->nrtel = $record['nr_tel'];
                 $this->form->login = $record['login'];
                 $this->form->pass = $record['haslo'];
-            } catch (\PDOException $e) {
+            }catch (\PDOException $e) {
                 Utils::addErrorMessage('Wystąpił błąd podczas odczytu rekordu');
                 if (App::getConf()->debug)
                     Utils::addErrorMessage($e->getMessage());
             }
         }
-        // 3. Wygenerowanie widoku
         $this->generateView();
     }
 
     public function action_personDelete() {
         if ($this->validateEdit()) {
-
-        $search_params = [];
-        $search_params['id_klienta'] = $this->form->id;
-        $where = &$search_params;
+            $search_params = [];
+            $search_params['id_klienta'] = $this->form->id;
+            $where = &$search_params;
 
             try {
-                App::getDB()->update("klient", [
-                    "aktywny" => 0
-                ],$where);
+                App::getDB()->update("klient", ["aktywny" => 0],$where);
                 Utils::addInfoMessage('Pomyślnie deaktywowano użytkownika');
-            } catch (\PDOException $e) {
-                Utils::addErrorMessage('Wystąpił błąd podczas usuwania rekordu');
+            }catch (\PDOException $e) {
+                Utils::addErrorMessage('Wystąpił błąd podczas deaktywacji użytkownika');
                 if (App::getConf()->debug)
                     Utils::addErrorMessage($e->getMessage());
             }
@@ -122,12 +99,8 @@ class PersonEditCtrl {
     }
 
     public function action_personSave() {
-        // 1. Walidacja danych formularza (z pobraniem)
         if ($this->validateSave()) {
-
-            // 2. Zapis danych w bazie
             try {
-                    //2.2 Edycja rekordu o danym ID
                     App::getDB()->update("klient", [
                         "imie" => $this->form->imie,
                         "nazwisko" => $this->form->nazwisko,
@@ -144,8 +117,6 @@ class PersonEditCtrl {
                 if (App::getConf()->debug)
                     Utils::addErrorMessage($e->getMessage());
             }
-
-            // 3b. Po zapisie przejdź na stronę listy osób (w ramach tego samego żądania http)
             $cos = SessionUtils::load('rola', true);
 
             if($cos == "admin"){
@@ -157,14 +128,13 @@ class PersonEditCtrl {
 
             
         } else {
-            // 3c. Gdy błąd walidacji to pozostań na stronie
             $this->generateView();
         }
     }
 
     public function generateView() {
         $cos = SessionUtils::load('rola', true);
-        App::getSmarty()->assign('form', $this->form); // dane formularza dla widoku
+        App::getSmarty()->assign('form', $this->form);
         App::getSmarty()->assign('rola', $cos);
         App::getSmarty()->display('PersonEdit.tpl');
     }

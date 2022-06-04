@@ -73,7 +73,7 @@ try {
                     ]);
     
         } catch (\PDOException $e) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
+            Utils::addErrorMessage('Wystąpił błąd podczas rejestracji użytkownika');
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }
@@ -86,7 +86,7 @@ try {
 
     public function generateView() {
         App::getSmarty()->assign('form', $this->form);
-        App::getSmarty()->display('LoginView.tpl');
+        App::getSmarty()->display('RegisterView.tpl');
     }
 
 }

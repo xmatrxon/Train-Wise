@@ -42,7 +42,9 @@
 		</br>
 		Od: {$p["Data_rozpoczecia"]}
 		</br>
-		Do: {$p["Data_zakonczenia"]}		
+		Do: {$p["Data_zakonczenia"]}
+		{else}
+		<p>Brak karnetu</p>	
 		{/if}
 		</td>
 		<td>
@@ -56,5 +58,20 @@
 {/foreach}
 </tbody>
 </table>
+<form action="{$conf->action_root}personList" method="post">
+{if {$page} == '' && {$operator} == 1 || {$page} == 0 && {$operator} == 1}
+<a class="btn btn-secondary" href="">Poprzednia</a>
+<a class="btn btn-secondary" href="">Następna</a>
+{else if {$page} == '' || {$page} == 0}
+<a class="btn btn-secondary" href="">Poprzednia</a>
+<a class="btn btn-success" href="{$conf->action_url}personList?page={$page+1}">Następna</a>
+{else if {$lastPage-1} == {$page}}
+<a class="btn btn-success" href="{$conf->action_url}personList?page={$page-1}">Poprzednia</a>
+<a class="btn btn-secondary" href="">Następna</a>
+{else}
+<a class="btn btn-success" href="{$conf->action_url}personList?page={$page-1}">Poprzednia</a>
+<a class="btn btn-success" href="{$conf->action_url}personList?page={$page+1}">Następna</a>
+{/if}
+</form>
 </div>
 {/block}
