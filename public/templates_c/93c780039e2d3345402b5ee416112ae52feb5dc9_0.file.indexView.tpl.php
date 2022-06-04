@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-30 13:13:22
+/* Smarty version 4.1.0, created on 2022-06-04 11:56:32
   from 'C:\xampp\htdocs\trainwise\app\views\templates\indexView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6294a6d2252a19_86417638',
+  'unifunc' => 'content_629b2c50432042_15555509',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '93c780039e2d3345402b5ee416112ae52feb5dc9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\templates\\indexView.tpl',
-      1 => 1653908986,
+      1 => 1654336591,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6294a6d2252a19_86417638 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629b2c50432042_15555509 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -51,12 +51,20 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav ms-auto">
-						<a class="nav-link active link" href="#home">Home</a>
-						<a class="nav-link link" href="#aboutus">o siłowni</a>
-						<a class="nav-link link" href="#prices">karnety</a>
-						<a class="nav-link link" href="#achievements">osiągnięcia</a>
-						<a class="nav-link link" href="#contact">kontakt</a>
+						<a class="nav-link active link" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
+">Home</a>
+						<a class="nav-link link" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
+#aboutus">o siłowni</a>
+						<a class="nav-link link" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
+#prices">karnety</a>
+						<a class="nav-link link" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
+#achievements">osiągnięcia</a>
+						<a class="nav-link link" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
+#contact">kontakt</a>
 <?php if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>
+
+	<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+userInfo" class="nav-link link login-btn">O tobie</a>
 	<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 logout" class="nav-link link login-btn">Wyloguj</a>
 <?php } else { ?>	
@@ -69,17 +77,17 @@ login" class="nav-link link login-btn">Zaloguj</a>
 			</div>
 		</nav>
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13175726916294a6d22411f5_69430926', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_542933402629b2c5041d985_60187544', 'main');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17314877386294a6d2242618_25353444', 'messages');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_51412520629b2c5041ee85_35877128', 'messages');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19685190156294a6d224f4d6_86673987', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_544488964629b2c5042e8a8_94551670', 'content');
 ?>
 
 		<?php echo '<script'; ?>
@@ -100,12 +108,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19685190156294a6d2
 </html>
 <?php }
 /* {block 'main'} */
-class Block_13175726916294a6d22411f5_69430926 extends Smarty_Internal_Block
+class Block_542933402629b2c5041d985_60187544 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_13175726916294a6d22411f5_69430926',
+    0 => 'Block_542933402629b2c5041d985_60187544',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -115,12 +123,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'main'} */
 /* {block 'messages'} */
-class Block_17314877386294a6d2242618_25353444 extends Smarty_Internal_Block
+class Block_51412520629b2c5041ee85_35877128 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'messages' => 
   array (
-    0 => 'Block_17314877386294a6d2242618_25353444',
+    0 => 'Block_51412520629b2c5041ee85_35877128',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -152,12 +160,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block 'messages'} */
 /* {block 'content'} */
-class Block_19685190156294a6d224f4d6_86673987 extends Smarty_Internal_Block
+class Block_544488964629b2c5042e8a8_94551670 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_19685190156294a6d224f4d6_86673987',
+    0 => 'Block_544488964629b2c5042e8a8_94551670',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

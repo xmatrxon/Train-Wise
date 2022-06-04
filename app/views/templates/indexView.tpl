@@ -22,12 +22,14 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav ms-auto">
-						<a class="nav-link active link" href="#home">Home</a>
-						<a class="nav-link link" href="#aboutus">o siłowni</a>
-						<a class="nav-link link" href="#prices">karnety</a>
-						<a class="nav-link link" href="#achievements">osiągnięcia</a>
-						<a class="nav-link link" href="#contact">kontakt</a>
+						<a class="nav-link active link" href="{$conf->app_url}">Home</a>
+						<a class="nav-link link" href="{$conf->app_url}#aboutus">o siłowni</a>
+						<a class="nav-link link" href="{$conf->app_url}#prices">karnety</a>
+						<a class="nav-link link" href="{$conf->app_url}#achievements">osiągnięcia</a>
+						<a class="nav-link link" href="{$conf->app_url}#contact">kontakt</a>
 {if count($conf->roles)>0}
+
+	<a href="{$conf->action_root}userInfo" class="nav-link link login-btn">Profil</a>
 	<a href="{$conf->action_root}logout" class="nav-link link login-btn">Wyloguj</a>
 {else}	
 	<a href="{$conf->action_root}login" class="nav-link link login-btn">Zaloguj</a>

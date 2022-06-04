@@ -24,7 +24,7 @@
   </div>
   <div class="mb-3">
     <label for="pass" class="form-label">Hasło: </label>
-    <input type="text" class="form-control" id="pass" name="pass" value="{$form->pass}">
+    <input type="password" class="form-control" id="pass" name="pass" value="{$form->pass}">
   </div>
   <button type="submit" class="btn btn-primary">Zapisz</button>
 

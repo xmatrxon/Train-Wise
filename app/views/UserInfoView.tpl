@@ -31,7 +31,9 @@
 		</br>
 		Od: {$p["Data_rozpoczecia"]}
 		</br>
-		Do: {$p["Data_zakonczenia"]}		
+		Do: {$p["Data_zakonczenia"]}
+		{else}
+		<a href="{$conf->action_root}karnet" class="nav-link link login-btn">Kup karnet</a>		
 		{/if}
 		</td>
 		<td>

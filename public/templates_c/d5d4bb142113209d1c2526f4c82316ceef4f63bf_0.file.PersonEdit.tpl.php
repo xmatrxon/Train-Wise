@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-06-03 23:42:42
+/* Smarty version 4.1.0, created on 2022-06-04 12:56:12
   from 'C:\xampp\htdocs\trainwise\app\views\PersonEdit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_629a80520e63b5_68427258',
+  'unifunc' => 'content_629b3a4c60a310_35604110',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd5d4bb142113209d1c2526f4c82316ceef4f63bf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\PersonEdit.tpl',
-      1 => 1654292528,
+      1 => 1654340170,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629a80520e63b5_68427258 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629b3a4c60a310_35604110 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1800790123629a80520d55a1_02439970', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1819543032629b3a4c5f8d79_01721162', 'main');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "indexView.tpl");
 }
 /* {block 'main'} */
-class Block_1800790123629a80520d55a1_02439970 extends Smarty_Internal_Block
+class Block_1819543032629b3a4c5f8d79_01721162 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_1800790123629a80520d55a1_02439970',
+    0 => 'Block_1819543032629b3a4c5f8d79_01721162',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -72,7 +72,7 @@ personSave" method="post">
   </div>
   <div class="mb-3">
     <label for="pass" class="form-label">Hasło: </label>
-    <input type="text" class="form-control" id="pass" name="pass" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->pass;?>
+    <input type="password" class="form-control" id="pass" name="pass" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->pass;?>
 ">
   </div>
   <button type="submit" class="btn btn-primary">Zapisz</button>

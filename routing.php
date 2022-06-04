@@ -15,6 +15,8 @@ Utils::addRoute('personList', 'PersonListCtrl');
 
 Utils::addRoute('userInfo', 'UserInfoCtrl');
 
+Utils::addRoute('karnet', 'KarnetCtrl');
+
 Utils::addRoute('personEdit', 'PersonEditCtrl', ["user", "admin"]);
 Utils::addRoute('personSave', 'PersonEditCtrl', ["user", "admin"]);
 Utils::addRoute('personDelete', 'PersonEditCtrl', ["admin"]);
