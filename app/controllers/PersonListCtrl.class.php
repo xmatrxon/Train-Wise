@@ -5,6 +5,7 @@ namespace app\controllers;
 use core\App;
 use core\Utils;
 use core\ParamUtils;
+use core\Validator;
 use app\forms\PersonSearchForm;
 use app\forms\PageForm;
 
@@ -14,7 +15,6 @@ class PersonListCtrl {
     private $records;
     public $karnet;
     public $page = 0;
-    public $operator;
     public $rekordy;
 
     public function __construct() {
@@ -22,37 +22,38 @@ class PersonListCtrl {
         $this->form2 = new PageForm();
     }
 
-    public function validate() {
+    public function getParams() {
         $this->form->nazwisko = ParamUtils::getFromRequest('sf_nazwisko');
         $this->form2->page = ParamUtils::getFromRequest('page');
-        return !App::getMessages()->isError();
+    }
+
+    public function validate() {
+            $v = new Validator();
+            $this->form2->page = $v->validate($this->form2->page,[
+                'int' => true,
+                'validator_message' => 'Parametr powinien być liczbą całkowitą'
+            ]);
+             if (App::getMessages()->isError())
+             App::getRouter()->forwardTo('errorList'); 
+            return !App::getMessages()->isError();
+
+        if (App::getMessages()->isError())
+            return false;
     }
 
     public function load_data() {
-        $this->validate();
+        $this->getParams();
+        if($this->validate()){
 
         $limit = 5;
         $offset = $limit*($this->form2->page);
 
-        $search_params = [];
-        if (isset($this->form->nazwisko) && strlen($this->form->nazwisko) > 0) {
-            $search_params['nazwisko[~]'] = $this->form->nazwisko . '%';
-        }
-
-        $num_params = sizeof($search_params);
-        if ($num_params > 1) {
-            $where = ["AND" => &$search_params];
-        } else {
-            $where = &$search_params;
-        }
-
+        $search_params['nazwisko'] = $this->form->nazwisko;
+        $where = &$search_params;
         $where ["ORDER"] = "nazwisko";
-
-
 
         if ($this->form->nazwisko != ""){
             try {
-
                 $this->liczba = App::getDB()->count("klient", $where);
                 $this->rekordy = $this->liczba ;
                 if ($this->liczba % $limit){
@@ -63,8 +64,6 @@ class PersonListCtrl {
                 }
 
                 $this->lastPage = $this->liczba;
-                
-                $this->operator = 1;
         
             $this->records = App::getDB()->select("czlonkostwo", [
                 "[<]klient"=>["id_klienta" => "ID_klienta"],
@@ -121,6 +120,11 @@ class PersonListCtrl {
         }
         }
     }
+    }
+
+    public function action_errorList() {
+        App::getSmarty()->display('ErrorList.tpl');
+    }
 
     public function action_personList() {
         $this->load_data();
@@ -128,7 +132,6 @@ class PersonListCtrl {
         App::getSmarty()->assign('klient', $this->records);
         App::getSmarty()->assign('page', $this->form2->page);
         App::getSmarty()->assign('lastPage', $this->lastPage);
-        App::getSmarty()->assign('operator', $this->operator);
         App::getSmarty()->assign('rekordy', $this->rekordy);
         App::getSmarty()->display('PersonList.tpl');
     }
@@ -139,7 +142,6 @@ class PersonListCtrl {
         App::getSmarty()->assign('klient', $this->records);
         App::getSmarty()->assign('page', $this->form2->page);
         App::getSmarty()->assign('lastPage', $this->lastPage);
-        App::getSmarty()->assign('operator', $this->operator);
         App::getSmarty()->assign('rekordy', $this->rekordy);
         App::getSmarty()->display('PersonListTable.tpl');        
     }

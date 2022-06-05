@@ -14,13 +14,15 @@ Utils::addRoute('register', 'RegisterCtrl');
 Utils::addRoute('personList', 'PersonListCtrl', ["admin"]);
 Utils::addRoute('personListPart', 'PersonListCtrl', ["admin"]);
 
+Utils::addRoute('errorList', 'PersonListCtrl', ["user", "admin"]);
+
 Utils::addRoute('userInfo', 'UserInfoCtrl', ["user", "admin"]);
 
 Utils::addRoute('karnet', 'KarnetCtrl', ["user", "admin"]);
 
 Utils::addRoute('personEdit', 'PersonEditCtrl', ["user", "admin"]);
 Utils::addRoute('personSave', 'PersonEditCtrl', ["user", "admin"]);
-Utils::addRoute('personDelete', 'PersonEditCtrl', ["admin"]);
+Utils::addRoute('personDeactive', 'PersonEditCtrl', ["admin"]);
 
 Utils::addRoute('hello', 'HelloCtrl');
 // Utils::addRoute('accessdenied', 'HelloCtrl');

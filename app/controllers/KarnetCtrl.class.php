@@ -18,7 +18,6 @@ class KarnetCtrl {
 
         $cos = SessionUtils::load('nazwa', true);
 
-        $search_params = [];
         $search_params['login'] = $cos;
         $where = &$search_params;
 

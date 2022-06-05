@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-06-05 20:19:27
+/* Smarty version 4.1.0, created on 2022-06-05 23:42:46
   from 'C:\xampp\htdocs\trainwise\app\views\PersonListTable.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_629cf3af8352d3_24252442',
+  'unifunc' => 'content_629d23564bf2c4_39392564',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bf0a305ecdb8807acdd7aaabb7545d2050f17fd4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\PersonListTable.tpl',
-      1 => 1654453166,
+      1 => 1654465365,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629cf3af8352d3_24252442 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629d23564bf2c4_39392564 (Smarty_Internal_Template $_smarty_tpl) {
 ?><table id="tab_people" class="table">
 <thead>
 	<tr>
@@ -51,7 +51,7 @@ $_smarty_tpl->tpl_vars['p']->do_else = false;
 </td><td><a class="btn btn-warning" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 personEdit/<?php echo $_smarty_tpl->tpl_vars['p']->value['id_klienta'];?>
 ">Edytuj</a>&nbsp;<a class="btn btn-danger" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-personDelete/<?php echo $_smarty_tpl->tpl_vars['p']->value['id_klienta'];?>
+personDeactive/<?php echo $_smarty_tpl->tpl_vars['p']->value['id_klienta'];?>
 ">Deaktywacja</a></td></tr>
 <?php
 }

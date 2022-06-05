@@ -6,6 +6,7 @@ use core\App;
 use core\Utils;
 use core\RoleUtils;
 use core\ParamUtils;
+use core\Validator;
 use app\forms\RegisterForm;
 
 class RegisterCtrl {
@@ -17,7 +18,7 @@ class RegisterCtrl {
         $this->form = new RegisterForm();
     }
 
-    public function validate() {
+    public function getParams() {
         $this->form->id = ParamUtils::getFromRequest('id');
         $this->form->imie = ParamUtils::getFromRequest('imie');
         $this->form->nazwisko = ParamUtils::getFromRequest('nazwisko');
@@ -25,29 +26,71 @@ class RegisterCtrl {
         $this->form->pesel = ParamUtils::getFromRequest('pesel');
         $this->form->login = ParamUtils::getFromRequest('login');
         $this->form->pass = ParamUtils::getFromRequest('pass');
+    }
 
+    public function validate() {
 
-        if (App::getMessages()->isError())
-            return false;
+		if (! (isset($this->form->imie) && isset($this->form->nazwisko) && isset($this->form->nrtel) && isset($this->form->pesel) && isset($this->form->login) && isset($this->form->pass))) {
+			return false;
+		}
 
-        if (empty($this->form->imie)) {
-            Utils::addErrorMessage('Nie podano imienia');
-        }
-        if (empty($this->form->nazwisko)) {
-            Utils::addErrorMessage('Nie podano nazwiska');
-        }
-        if (empty($this->form->nrtel)) {
-            Utils::addErrorMessage('Nie podano numeru telefonu');
-        }
-        if (empty($this->form->pesel)) {
-            Utils::addErrorMessage('Nie podano peselu');
-        }
-        if (empty($this->form->login)) {
-            Utils::addErrorMessage('Nie podano loginu');
-        }
-        if (empty($this->form->pass)) {
-            Utils::addErrorMessage('Nie podano hasła');
-        }
+        $v = new Validator();
+
+        $v->validate($this->form->imie, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Imię jest wymagane',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Imię powinno mieć pomiędzy 3 a 50 znaków'
+        ]);
+
+        $v->validate($this->form->nazwisko, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Nazwisko jest wymagane',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Nazwisko powinno mieć pomiędzy 3 a 50 znaków'
+        ]);
+
+        $v->validate($this->form->nrtel, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Numer telefonu jest wymagany',
+            'min_length' => 9,
+            'max_length' => 9,
+            'int' => true,
+            'validator_message' => 'Numer telefonu powinien mieć 9 cyfr'
+        ]);
+
+        $v->validate($this->form->pesel, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Pesel jest wymagany',
+            'min_length' => 11,
+            'max_length' => 11,
+            'int' => true,
+            'validator_message' => 'Pesel powinien mieć 11 cyfr'
+        ]);
+
+        $v->validate($this->form->login, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Login jest wymagany',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Login powinien mieć pomiędzy 3 a 50 znaków'
+        ]);
+
+        $v->validate($this->form->pass, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Hasło jest wymagane',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Hasło powinno mieć pomiędzy 3 a 50 znaków'
+        ]);
 
         if (App::getMessages()->isError())
             return false;
@@ -60,9 +103,9 @@ class RegisterCtrl {
     }
 
     public function action_register() {
+        $this->getParams();
         if ($this->validate()) {       
-try {
-
+            try {
             App::getDB()->insert("klient", [
                 "imie" => $this->form->imie,
                 "nazwisko" => $this->form->nazwisko,

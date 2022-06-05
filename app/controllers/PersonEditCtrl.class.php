@@ -14,37 +14,72 @@ class PersonEditCtrl {
     private $form;
     public $cos;
     
-
     public function __construct() { 
         $this->form = new PersonEditForm();
     }
 
+    public function getParams() {
+        $this->form->id = ParamUtils::getFromRequest('id');
+        $this->form->imie = ParamUtils::getFromRequest('imie');
+        $this->form->nazwisko = ParamUtils::getFromRequest('nazwisko');
+        $this->form->nrtel = ParamUtils::getFromRequest('nrtel');
+        $this->form->login = ParamUtils::getFromRequest('login');
+        $this->form->pass = ParamUtils::getFromRequest('pass');
+    }
+
     public function validateSave() {
-        $this->form->id = ParamUtils::getFromRequest('id', true, 'Błędne wywołanie aplikacji');
-        $this->form->imie = ParamUtils::getFromRequest('imie', true, 'Błędne wywołanie aplikacji');
-        $this->form->nazwisko = ParamUtils::getFromRequest('nazwisko', true, 'Błędne wywołanie aplikacji');
-        $this->form->nrtel = ParamUtils::getFromRequest('nrtel', true, 'Błędne wywołanie aplikacji');
-        $this->form->login = ParamUtils::getFromRequest('login', true, 'Błędne wywołanie aplikacji');
-        $this->form->pass = ParamUtils::getFromRequest('pass', true, 'Błędne wywołanie aplikacji');
+		if (! (isset($this->form->imie) && isset($this->form->nazwisko) && isset($this->form->nrtel) && isset($this->form->login) && isset($this->form->pass))) {
+			return false;
+		}
 
-        if (App::getMessages()->isError())
-            return false;
+        $v = new Validator();
 
-        if (empty(trim($this->form->imie))) {
-            Utils::addErrorMessage('Wprowadź imię');
-        }
-        if (empty(trim($this->form->nazwisko))) {
-            Utils::addErrorMessage('Wprowadź nazwisko');
-        }
-        if (empty(trim($this->form->nrtel))) {
-            Utils::addErrorMessage('Wprowadź numer telefonu');
-        }
-        if (empty(trim($this->form->login))) {
-            Utils::addErrorMessage('Wprowadź login');
-        }
-        if (empty(trim($this->form->pass))) {
-            Utils::addErrorMessage('Wprowadź hasło');
-        }
+        $v->validate($this->form->imie, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Imię jest wymagane',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Imię powinno mieć pomiędzy 3 a 50 znaków'
+        ]);
+
+        $v->validate($this->form->nazwisko, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Nazwisko jest wymagane',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Nazwisko powinno mieć pomiędzy 3 a 50 znaków'
+        ]);
+
+        $v->validate($this->form->nrtel, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Numer telefonu jest wymagany',
+            'min_length' => 9,
+            'max_length' => 9,
+            'int' => true,
+            'validator_message' => 'Numer telefonu powinien mieć 9 cyfr'
+        ]);
+
+        $v->validate($this->form->login, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Login jest wymagany',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Login powinien mieć pomiędzy 3 a 50 znaków'
+        ]);
+
+        $v->validate($this->form->pass, [
+            'trim' => true,
+            'required' => true,
+            'required_message' => 'Hasło jest wymagane',
+            'min_length' => 3,
+            'max_length' => 50,
+            'validator_message' => 'Hasło powinno mieć pomiędzy 3 a 50 znaków'
+        ]);
+        
 
         if (App::getMessages()->isError())
             return false;
@@ -53,8 +88,14 @@ class PersonEditCtrl {
     }
 
     public function validateEdit() {
-            $this->form->id = ParamUtils::getFromCleanURL(1, true, 'Błędne wywołanie aplikacji');
-            return !App::getMessages()->isError();
+        $v = new Validator();
+            $this->form->id = $v->validateFromCleanURL(1,[
+                'int' => true,
+                'validator_message' => 'Parametr powinien być liczbą całkowitą'
+            ]);
+             if (App::getMessages()->isError())
+             App::getRouter()->forwardTo('userInfo'); 
+            return !App::getMessages()->isError();      
     }
 
     public function validateID() {
@@ -68,7 +109,7 @@ class PersonEditCtrl {
     }
 
     public function action_personEdit() {
-
+        $this->getParams();
         if ($this->validateEdit()) {
             if ($this->validateID()){
             try {
@@ -89,9 +130,9 @@ class PersonEditCtrl {
         }
     }
 
-    public function action_personDelete() {
+    public function action_personDeactive() {
+        $this->getParams();
         if ($this->validateEdit()) {
-            $search_params = [];
             $search_params['id_klienta'] = $this->form->id;
             $where = &$search_params;
 
@@ -108,6 +149,7 @@ class PersonEditCtrl {
     }
 
     public function action_personSave() {
+        $this->getParams();
         if ($this->validateSave()) {
             try {
                     App::getDB()->update("klient", [

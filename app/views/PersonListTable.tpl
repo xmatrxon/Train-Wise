@@ -33,7 +33,7 @@
 		<td>
 			<a class="btn btn-warning" href="{$conf->action_url}personEdit/{$p['id_klienta']}">Edytuj</a>
 			&nbsp;
-			<a class="btn btn-danger" href="{$conf->action_url}personDelete/{$p['id_klienta']}">Deaktywacja</a>
+			<a class="btn btn-danger" href="{$conf->action_url}personDeactive/{$p['id_klienta']}">Deaktywacja</a>
 		</td>
 	</tr>
 {/strip}
