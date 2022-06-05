@@ -53,16 +53,24 @@ class PersonEditCtrl {
     }
 
     public function validateEdit() {
-        $this->form->id = ParamUtils::getFromCleanURL(1, true, 'Błędne wywołanie aplikacji');
-        return !App::getMessages()->isError();
+            $this->form->id = ParamUtils::getFromCleanURL(1, true, 'Błędne wywołanie aplikacji');
+            return !App::getMessages()->isError();
     }
 
-    public function action_personNew() {
-        $this->generateView();
+    public function validateID() {
+        $public_id = SessionUtils::load('id', true);
+        $rola = SessionUtils::load('rola', true);
+        $id = (int) $this->form->id;
+        if($public_id != $id && $rola == 'user'){
+            App::getRouter()->forwardTo('userInfo');    
+    }
+    return !App::getMessages()->isError();
     }
 
     public function action_personEdit() {
+
         if ($this->validateEdit()) {
+            if ($this->validateID()){
             try {
                 $record = App::getDB()->get("klient", "*", ["id_klienta" => $this->form->id]);
                 $this->form->id = $record['id_klienta'];
@@ -78,6 +86,7 @@ class PersonEditCtrl {
             }
         }
         $this->generateView();
+        }
     }
 
     public function action_personDelete() {

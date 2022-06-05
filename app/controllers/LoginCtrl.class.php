@@ -14,6 +14,8 @@ class LoginCtrl {
     public $form;
     public $rola;
     private $password;
+    public $aktywny;
+    public $id;
 
     public function __construct() {
         $this->form = new LoginForm();
@@ -45,19 +47,27 @@ class LoginCtrl {
 
 
         try {
+            $aktywny = App::getDB()->get("klient", 
+                "aktywny"
+                    , $where);
             $rola = App::getDB()->get("klient", 
                 "rola"
                     , $where);
             $password = App::getDB()->get("klient", 
                 "haslo"
                     , $where);
+            $id = App::getDB()->get("klient", 
+                "id_klienta"
+                    , $where);
+            SessionUtils::store('id', $id);        
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }
 
-        SessionUtils::store('rola', $rola);
+            if ($aktywny == 1){
+                SessionUtils::store('rola', $rola);
 
         if($password == $this->form->pass) {
             if ($rola == 'admin') {
@@ -70,6 +80,11 @@ class LoginCtrl {
         }
 
         return !App::getMessages()->isError();
+            }else{
+                Utils::addErrorMessage('Użytkownik nieaktywny');
+            }
+
+        
     }
 
     public function action_loginShow() {
@@ -96,6 +111,7 @@ class LoginCtrl {
         session_destroy();
         SessionUtils::remove('nazwa');
         SessionUtils::remove('rola');
+        SessionUtils::remove('id');
         App::getRouter()->redirectTo('hello');
     }
 

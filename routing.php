@@ -11,11 +11,12 @@ Utils::addRoute('logout', 'LoginCtrl');
 
 Utils::addRoute('register', 'RegisterCtrl');
 
-Utils::addRoute('personList', 'PersonListCtrl');
+Utils::addRoute('personList', 'PersonListCtrl', ["admin"]);
+Utils::addRoute('personListPart', 'PersonListCtrl', ["admin"]);
 
-Utils::addRoute('userInfo', 'UserInfoCtrl');
+Utils::addRoute('userInfo', 'UserInfoCtrl', ["user", "admin"]);
 
-Utils::addRoute('karnet', 'KarnetCtrl');
+Utils::addRoute('karnet', 'KarnetCtrl', ["user", "admin"]);
 
 Utils::addRoute('personEdit', 'PersonEditCtrl', ["user", "admin"]);
 Utils::addRoute('personSave', 'PersonEditCtrl', ["user", "admin"]);

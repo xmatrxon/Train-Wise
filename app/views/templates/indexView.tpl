@@ -14,6 +14,7 @@
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 		<script src="https://kit.fontawesome.com/be4ae855ef.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="{$conf->app_url}/css/main.css" />
+		<script type="text/javascript" src="{$conf->app_url}/js/functions.js"></script>
 	</head>
 	<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="82">
 		<nav id="navbar" class="navbar navbar-expand-lg position-fixed top-0 w-100 py-3 shadow-bg">
@@ -28,7 +29,6 @@
 						<a class="nav-link link" href="{$conf->app_url}#achievements">osiągnięcia</a>
 						<a class="nav-link link" href="{$conf->app_url}#contact">kontakt</a>
 {if count($conf->roles)>0}
-
 	<a href="{$conf->action_root}userInfo" class="nav-link link login-btn">Profil</a>
 	<a href="{$conf->action_root}logout" class="nav-link link login-btn">Wyloguj</a>
 {else}	

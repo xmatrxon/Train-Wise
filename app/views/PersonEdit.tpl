@@ -28,16 +28,12 @@
   </div>
   <button type="submit" class="btn btn-primary">Zapisz</button>
 
-
-
-
 {if $rola == "admin"}
 <a class="btn btn-secondary" href="{$conf->action_root}personList">Powrót</a>
 {else}
 <a class="btn btn-secondary" href="{$conf->action_root}userInfo">Powrót</a>
 {/if}
-  
-  <input type="hidden" name="id" value="{$form->id}">
+<input type="hidden" name="id" value="{$form->id}">
 </form>
 </div>
 {/block}

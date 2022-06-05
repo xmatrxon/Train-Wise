@@ -15,6 +15,7 @@ class PersonListCtrl {
     public $karnet;
     public $page = 0;
     public $operator;
+    public $rekordy;
 
     public function __construct() {
         $this->form = new PersonSearchForm();
@@ -27,7 +28,7 @@ class PersonListCtrl {
         return !App::getMessages()->isError();
     }
 
-    public function action_personList() {
+    public function load_data() {
         $this->validate();
 
         $limit = 5;
@@ -53,7 +54,7 @@ class PersonListCtrl {
             try {
 
                 $this->liczba = App::getDB()->count("klient", $where);
-
+                $this->rekordy = $this->liczba ;
                 if ($this->liczba % $limit){
                     $this->liczba = intval(($this->liczba/$limit)+1);
                 }
@@ -88,6 +89,7 @@ class PersonListCtrl {
         else {
             try {
                 $this->liczba = App::getDB()->count("klient");
+                $this->rekordy = $this->liczba ;
 
                 if ($this->liczba % $limit){
                     $this->liczba = intval(($this->liczba/$limit)+1);
@@ -118,13 +120,28 @@ class PersonListCtrl {
                 Utils::addErrorMessage($e->getMessage());
         }
         }
+    }
 
+    public function action_personList() {
+        $this->load_data();
         App::getSmarty()->assign('searchForm', $this->form);
         App::getSmarty()->assign('klient', $this->records);
         App::getSmarty()->assign('page', $this->form2->page);
         App::getSmarty()->assign('lastPage', $this->lastPage);
         App::getSmarty()->assign('operator', $this->operator);
+        App::getSmarty()->assign('rekordy', $this->rekordy);
         App::getSmarty()->display('PersonList.tpl');
+    }
+
+    public function action_personListPart() {
+        $this->load_data();
+        App::getSmarty()->assign('searchForm', $this->form);
+        App::getSmarty()->assign('klient', $this->records);
+        App::getSmarty()->assign('page', $this->form2->page);
+        App::getSmarty()->assign('lastPage', $this->lastPage);
+        App::getSmarty()->assign('operator', $this->operator);
+        App::getSmarty()->assign('rekordy', $this->rekordy);
+        App::getSmarty()->display('PersonListTable.tpl');        
     }
 
 }
