@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 
 use core\App;
@@ -9,16 +8,19 @@ use core\ParamUtils;
 use core\Validator;
 use app\forms\RegisterForm;
 
-class RegisterCtrl {
+class RegisterCtrl
+{
 
     private $form;
-    public $id;
+    private $id;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->form = new RegisterForm();
     }
 
-    public function getParams() {
+    public function getParams()
+    {
         $this->form->id = ParamUtils::getFromRequest('id');
         $this->form->imie = ParamUtils::getFromRequest('imie');
         $this->form->nazwisko = ParamUtils::getFromRequest('nazwisko');
@@ -28,11 +30,13 @@ class RegisterCtrl {
         $this->form->pass = ParamUtils::getFromRequest('pass');
     }
 
-    public function validate() {
+    public function validate()
+    {
 
-		if (! (isset($this->form->imie) && isset($this->form->nazwisko) && isset($this->form->nrtel) && isset($this->form->pesel) && isset($this->form->login) && isset($this->form->pass))) {
-			return false;
-		}
+        if (!(isset($this->form->imie) && isset($this->form->nazwisko) && isset($this->form->nrtel) && isset($this->form->pesel) && isset($this->form->login) && isset($this->form->pass)))
+        {
+            return false;
+        }
 
         $v = new Validator();
 
@@ -92,44 +96,52 @@ class RegisterCtrl {
             'validator_message' => 'Hasło powinno mieć pomiędzy 3 a 50 znaków'
         ]);
 
-        if (App::getMessages()->isError())
-            return false;
+        if (App::getMessages()
+            ->isError()) return false;
 
-        return !App::getMessages()->isError();
+        return !App::getMessages()
+            ->isError();
     }
 
-    public function action_registerShow() {
+    public function action_registerShow()
+    {
         $this->generateView();
     }
 
-    public function action_register() {
+    public function action_register()
+    {
         $this->getParams();
-        if ($this->validate()) {       
-            try {
-            App::getDB()->insert("klient", [
-                "imie" => $this->form->imie,
-                "nazwisko" => $this->form->nazwisko,
-                "nr_tel" => $this->form->nrtel,
-                "pesel" => $this->form->pesel,
-                "login" => $this->form->login,
-                "haslo" => $this->form->pass,
-                    ]);
-    
-        } catch (\PDOException $e) {
-            Utils::addErrorMessage('Wystąpił błąd podczas rejestracji użytkownika');
-            if (App::getConf()->debug)
-                Utils::addErrorMessage($e->getMessage());
-        }
+        if ($this->validate())
+        {
+            try
+            {
+                App::getDB()->insert("klient", [
+                    "imie" => $this->form->imie,
+                    "nazwisko" => $this->form->nazwisko,
+                    "nr_tel" => $this->form->nrtel,
+                    "pesel" => $this->form->pesel,
+                    "login" => $this->form->login,
+                    "haslo" => $this->form->pass,
+                        ]);
+            }
+            catch(\PDOException $e)
+            {
+                Utils::addErrorMessage('Podany PESEL lub login znajduje się już w bazie danych');
+                App::getRouter()->forwardTo('register');
+                if (App::getConf()->debug) Utils::addErrorMessage($e->getMessage());
+            }
 
-        App::getRouter()->forwardTo('login');
-        } else {
+            App::getRouter()->forwardTo('login');
+        }
+        else
+        {
             $this->generateView();
         }
     }
 
-    public function generateView() {
+    public function generateView()
+    {
         App::getSmarty()->assign('form', $this->form);
         App::getSmarty()->display('RegisterView.tpl');
     }
-
 }

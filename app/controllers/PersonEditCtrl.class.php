@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 
 use core\App;
@@ -9,16 +8,19 @@ use core\Validator;
 use core\SessionUtils;
 use app\forms\PersonEditForm;
 
-class PersonEditCtrl {
+class PersonEditCtrl
+{
 
     private $form;
-    public $cos;
-    
-    public function __construct() { 
+    public $rola;
+
+    public function __construct()
+    {
         $this->form = new PersonEditForm();
     }
 
-    public function getParams() {
+    public function getParams()
+    {
         $this->form->id = ParamUtils::getFromRequest('id');
         $this->form->imie = ParamUtils::getFromRequest('imie');
         $this->form->nazwisko = ParamUtils::getFromRequest('nazwisko');
@@ -27,10 +29,12 @@ class PersonEditCtrl {
         $this->form->pass = ParamUtils::getFromRequest('pass');
     }
 
-    public function validateSave() {
-		if (! (isset($this->form->imie) && isset($this->form->nazwisko) && isset($this->form->nrtel) && isset($this->form->login) && isset($this->form->pass))) {
-			return false;
-		}
+    public function validateSave()
+    {
+        if (!(isset($this->form->imie) && isset($this->form->nazwisko) && isset($this->form->nrtel) && isset($this->form->login) && isset($this->form->pass)))
+        {
+            return false;
+        }
 
         $v = new Validator();
 
@@ -79,115 +83,156 @@ class PersonEditCtrl {
             'max_length' => 50,
             'validator_message' => 'Hasło powinno mieć pomiędzy 3 a 50 znaków'
         ]);
-        
 
-        if (App::getMessages()->isError())
-            return false;
+        if (App::getMessages()->isError()) return false;
 
         return !App::getMessages()->isError();
     }
 
-    public function validateEdit() {
+    public function validateEdit()
+    {
         $v = new Validator();
-            $this->form->id = $v->validateFromCleanURL(1,[
-                'int' => true,
-                'validator_message' => 'Parametr powinien być liczbą całkowitą'
-            ]);
-             if (App::getMessages()->isError())
-             App::getRouter()->forwardTo('userInfo'); 
-            return !App::getMessages()->isError();      
+        $rola = SessionUtils::load('rola', true);
+        $this->form->id = $v->validateFromCleanURL(1, ['int' => true, 'required' => true, 'validator_message' => 'Parametr powinien być liczbą całkowitą']);
+        if (App::getMessages()->isError())
+        {
+            if ($rola == 'admin') App::getRouter()->redirectTo('personList');
+            else App::getRouter()
+                ->redirectTo('userInfo');
+        }
+        return !App::getMessages()->isError();
     }
 
-    public function validateID() {
+    public function validateID()
+    {
         $public_id = SessionUtils::load('id', true);
         $rola = SessionUtils::load('rola', true);
-        $id = (int) $this->form->id;
-        if($public_id != $id && $rola == 'user'){
-            App::getRouter()->forwardTo('userInfo');    
-    }
-    return !App::getMessages()->isError();
+        $id = (int)$this->form->id;
+        if ($public_id != $id && $rola == 'user')
+        {
+            App::getRouter()->forwardTo('userInfo');
+        }
+        return !App::getMessages()->isError();
     }
 
-    public function action_personEdit() {
+    public function action_personEdit()
+    {
         $this->getParams();
-        if ($this->validateEdit()) {
-            if ($this->validateID()){
-            try {
-                $record = App::getDB()->get("klient", "*", ["id_klienta" => $this->form->id]);
-                $this->form->id = $record['id_klienta'];
-                $this->form->imie = $record['imie'];
-                $this->form->nazwisko = $record['nazwisko'];
-                $this->form->nrtel = $record['nr_tel'];
-                $this->form->login = $record['login'];
-                $this->form->pass = $record['haslo'];
-            }catch (\PDOException $e) {
-                Utils::addErrorMessage('Wystąpił błąd podczas odczytu rekordu');
-                if (App::getConf()->debug)
-                    Utils::addErrorMessage($e->getMessage());
+        if ($this->validateEdit())
+        {
+            if ($this->validateID())
+            {
+                try
+                {
+                    $record = App::getDB()->get("klient", "*", ["id_klienta" => $this->form->id]);
+                    $this->form->id = $record['id_klienta'];
+                    $this->form->imie = $record['imie'];
+                    $this->form->nazwisko = $record['nazwisko'];
+                    $this->form->nrtel = $record['nr_tel'];
+                    $this->form->login = $record['login'];
+                    $this->form->pass = $record['haslo'];
+                }
+                catch(\PDOException $e)
+                {
+                    Utils::addErrorMessage('Wystąpił błąd podczas odczytu rekordu');
+                    if (App::getConf()->debug) Utils::addErrorMessage($e->getMessage());
+                }
             }
-        }
-        $this->generateView();
+            $this->generateView();
         }
     }
 
-    public function action_personDeactive() {
+    public function action_personDeactive()
+    {
         $this->getParams();
-        if ($this->validateEdit()) {
+        if ($this->validateEdit())
+        {
             $search_params['id_klienta'] = $this->form->id;
-            $where = &$search_params;
+            $where = & $search_params;
 
-            try {
-                App::getDB()->update("klient", ["aktywny" => 0],$where);
+            try
+            {
+                App::getDB()->update("klient", ["aktywny" => 0], $where);
                 Utils::addInfoMessage('Pomyślnie deaktywowano użytkownika');
-            }catch (\PDOException $e) {
+            }
+            catch(\PDOException $e)
+            {
                 Utils::addErrorMessage('Wystąpił błąd podczas deaktywacji użytkownika');
-                if (App::getConf()->debug)
-                    Utils::addErrorMessage($e->getMessage());
+                if (App::getConf()->debug) Utils::addErrorMessage($e->getMessage());
             }
         }
         App::getRouter()->forwardTo('personList');
     }
 
-    public function action_personSave() {
+    public function action_personActivate()
+    {
         $this->getParams();
-        if ($this->validateSave()) {
-            try {
-                    App::getDB()->update("klient", [
-                        "imie" => $this->form->imie,
-                        "nazwisko" => $this->form->nazwisko,
-                        "nr_tel" => $this->form->nrtel,
-                        "login" => $this->form->login,
-                        "haslo" => $this->form->pass
-                            ], [
-                        "id_klienta" => $this->form->id
-                    ]);
-                
-                Utils::addInfoMessage('Pomyślnie zapisano rekord');
-            } catch (\PDOException $e) {
-                Utils::addErrorMessage('Wystąpił nieoczekiwany błąd podczas zapisu rekordu');
-                if (App::getConf()->debug)
-                    Utils::addErrorMessage($e->getMessage());
-            }
-            $cos = SessionUtils::load('rola', true);
+        if ($this->validateEdit())
+        {
+            $search_params['id_klienta'] = $this->form->id;
+            $where = & $search_params;
 
-            if($cos == "admin"){
+            try
+            {
+                App::getDB()->update("klient", ["aktywny" => 1], $where);
+                Utils::addInfoMessage('Pomyślnie aktywowano użytkownika');
+            }
+            catch(\PDOException $e)
+            {
+                Utils::addErrorMessage('Wystąpił błąd podczas aktywacji użytkownika');
+                if (App::getConf()->debug) Utils::addErrorMessage($e->getMessage());
+            }
+        }
+        App::getRouter()->forwardTo('personList');
+    }
+
+    public function action_personSave()
+    {
+        $this->getParams();
+        if ($this->validateSave())
+        {
+            try
+            {
+                App::getDB()->update("klient", [
+                    "imie" => $this->form->imie,
+                    "nazwisko" => $this->form->nazwisko,
+                    "nr_tel" => $this->form->nrtel,
+                    "login" => $this->form->login,
+                    "haslo" => $this->form->pass
+                    ], ["id_klienta" => $this->form->id
+                    ]);
+
+                Utils::addInfoMessage('Pomyślnie zapisano rekord');
+            }
+            catch(\PDOException $e)
+            {
+                Utils::addErrorMessage('Wystąpił nieoczekiwany błąd podczas zapisu rekordu');
+                if (App::getConf()->debug) Utils::addErrorMessage($e->getMessage());
+            }
+            $rola = SessionUtils::load('rola', true);
+
+            if ($rola == "admin")
+            {
                 App::getRouter()->forwardTo('personList');
             }
-            else {
+            else
+            {
                 App::getRouter()->forwardTo('userInfo');
             }
-
-            
-        } else {
+        }
+        else
+        {
             $this->generateView();
         }
     }
 
-    public function generateView() {
-        $cos = SessionUtils::load('rola', true);
+    public function generateView()
+    {
+        $rola = SessionUtils::load('rola', true);
         App::getSmarty()->assign('form', $this->form);
-        App::getSmarty()->assign('rola', $cos);
+        App::getSmarty()->assign('rola', $rola);
         App::getSmarty()->display('PersonEdit.tpl');
     }
 
 }
+

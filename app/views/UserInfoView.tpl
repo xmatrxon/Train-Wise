@@ -1,11 +1,8 @@
 {extends file="indexView.tpl"}
 
 {block name=main}
-{/block}
-
-{block name=content}
-<div class="container mt-5">
-<table id="tab_people" class="table">
+<div class="container mt-5 mb-5">
+<table id="tab_people" class="table searchForm">
 <thead>
 	<tr>
 		<th>IMIE</th>
@@ -46,5 +43,12 @@
 {/foreach}
 </tbody>
 </table>
+{if {$rola} == 'admin'}
+	<a class="btn btn-success" href="{$conf->action_url}personList">Lista klientów</a>
+{/if}
 </div>
+{/block}
+
+{block name=content}
+
 {/block}

@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="{$conf->app_url}/css/main.css" />
 		<script type="text/javascript" src="{$conf->app_url}/js/functions.js"></script>
 	</head>
-	<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="82">
+	<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="82" class="bg-light">
 		<nav id="navbar" class="navbar navbar-expand-lg position-fixed top-0 w-100 py-3 shadow-bg">
 			<div class="container">
 				<a class="navbar-brand link" href="#"><i class="fa-solid fa-dumbbell"></i> <span class="color-text">trainwise</span></a>
@@ -42,7 +42,6 @@
 {block name=main} {/block}
 
 {block name=messages}
-
 {if $msgs->isMessage()}
 <div class="messages bottom-margin">
 	<ul>
@@ -54,9 +53,6 @@
 	</ul>
 </div>
 {/if}
-
-
-
 {/block}
 
 {block name=content} {/block}

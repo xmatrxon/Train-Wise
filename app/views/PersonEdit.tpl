@@ -2,9 +2,9 @@
 
 {block name=main}
 
-<div class="container p-5">
+<div class="container mt-5">
 
-<form action="{$conf->action_root}personSave" method="post">
+<form action="{$conf->action_root}personSave" method="post" class="searchForm">
 <legend>Dane osoby</legend>
   <div class="mb-3">
     <label for="imie" class="form-label">Imię: </label>

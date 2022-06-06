@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-06-05 20:31:24
+/* Smarty version 4.1.0, created on 2022-06-06 11:16:03
   from 'C:\xampp\htdocs\trainwise\app\views\PersonEdit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_629cf67c45a730_72116380',
+  'unifunc' => 'content_629dc5d3d5a628_52748318',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd5d4bb142113209d1c2526f4c82316ceef4f63bf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\PersonEdit.tpl',
-      1 => 1654453858,
+      1 => 1654506963,
       2 => 'file',
     ),
   ),
@@ -20,35 +20,35 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629cf67c45a730_72116380 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629dc5d3d5a628_52748318 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1955953006629cf67c449b80_12927008', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1230964210629dc5d3d4a111_20091166', 'main');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "indexView.tpl");
 }
 /* {block 'main'} */
-class Block_1955953006629cf67c449b80_12927008 extends Smarty_Internal_Block
+class Block_1230964210629dc5d3d4a111_20091166 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_1955953006629cf67c449b80_12927008',
+    0 => 'Block_1230964210629dc5d3d4a111_20091166',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 
-<div class="container p-5">
+<div class="container mt-5">
 
 <form action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-personSave" method="post">
+personSave" method="post" class="searchForm">
 <legend>Dane osoby</legend>
   <div class="mb-3">
     <label for="imie" class="form-label">Imię: </label>

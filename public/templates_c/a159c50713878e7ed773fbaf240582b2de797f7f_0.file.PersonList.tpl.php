@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-06-05 20:16:24
+/* Smarty version 4.1.0, created on 2022-06-06 11:45:14
   from 'C:\xampp\htdocs\trainwise\app\views\PersonList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_629cf2f89c9032_43602167',
+  'unifunc' => 'content_629dccaac3afe6_10492784',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a159c50713878e7ed773fbaf240582b2de797f7f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\PersonList.tpl',
-      1 => 1654452977,
+      1 => 1654508709,
       2 => 'file',
     ),
   ),
@@ -21,30 +21,30 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:PersonListTable.tpl' => 1,
   ),
 ),false)) {
-function content_629cf2f89c9032_43602167 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629dccaac3afe6_10492784 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_886271624629cf2f89bf5c3_22459287', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1621856251629dccaac31516_96143679', 'main');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_109077493629cf2f89c5155_91534835', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_52039283629dccaac37185_34607506', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "indexView.tpl");
 }
 /* {block 'main'} */
-class Block_886271624629cf2f89bf5c3_22459287 extends Smarty_Internal_Block
+class Block_1621856251629dccaac31516_96143679 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_886271624629cf2f89bf5c3_22459287',
+    0 => 'Block_1621856251629dccaac31516_96143679',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -68,12 +68,12 @@ personListPart','table'); return false;">
 }
 /* {/block 'main'} */
 /* {block 'content'} */
-class Block_109077493629cf2f89c5155_91534835 extends Smarty_Internal_Block
+class Block_52039283629dccaac37185_34607506 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_109077493629cf2f89c5155_91534835',
+    0 => 'Block_52039283629dccaac37185_34607506',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

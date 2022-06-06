@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-06-05 22:28:52
+/* Smarty version 4.1.0, created on 2022-06-06 11:18:23
   from 'C:\xampp\htdocs\trainwise\app\views\templates\indexView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_629d120457c4f3_73525784',
+  'unifunc' => 'content_629dc65fd58856_42263933',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '93c780039e2d3345402b5ee416112ae52feb5dc9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\templates\\indexView.tpl',
-      1 => 1654456569,
+      1 => 1654507103,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629d120457c4f3_73525784 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629dc65fd58856_42263933 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -48,7 +48,7 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 /js/functions.js"><?php echo '</script'; ?>
 >
 	</head>
-	<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="82">
+	<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="82" class="bg-light">
 		<nav id="navbar" class="navbar navbar-expand-lg position-fixed top-0 w-100 py-3 shadow-bg">
 			<div class="container">
 				<a class="navbar-brand link" href="#"><i class="fa-solid fa-dumbbell"></i> <span class="color-text">trainwise</span></a>
@@ -80,17 +80,17 @@ login" class="nav-link link login-btn">Zaloguj</a>
 			</div>
 		</nav>
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_429289738629d1204561902_64040177', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1769620332629dc65fd440b1_83957928', 'main');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1052347212629d1204562e31_75556498', 'messages');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_319196511629dc65fd455a6_39937044', 'messages');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1238432105629d1204578c94_11231510', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_444211655629dc65fd55010_74776411', 'content');
 ?>
 
 		<?php echo '<script'; ?>
@@ -111,12 +111,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1238432105629d1204
 </html>
 <?php }
 /* {block 'main'} */
-class Block_429289738629d1204561902_64040177 extends Smarty_Internal_Block
+class Block_1769620332629dc65fd440b1_83957928 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_429289738629d1204561902_64040177',
+    0 => 'Block_1769620332629dc65fd440b1_83957928',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -126,17 +126,16 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'main'} */
 /* {block 'messages'} */
-class Block_1052347212629d1204562e31_75556498 extends Smarty_Internal_Block
+class Block_319196511629dc65fd455a6_39937044 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'messages' => 
   array (
-    0 => 'Block_1052347212629d1204562e31_75556498',
+    0 => 'Block_319196511629dc65fd455a6_39937044',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
-
 
 <?php if ($_smarty_tpl->tpl_vars['msgs']->value->isMessage()) {?>
 <div class="messages bottom-margin">
@@ -154,21 +153,17 @@ $_smarty_tpl->tpl_vars['msg']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 	</ul>
 </div>
-<?php }?>
-
-
-
-<?php
+<?php }
 }
 }
 /* {/block 'messages'} */
 /* {block 'content'} */
-class Block_1238432105629d1204578c94_11231510 extends Smarty_Internal_Block
+class Block_444211655629dc65fd55010_74776411 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1238432105629d1204578c94_11231510',
+    0 => 'Block_444211655629dc65fd55010_74776411',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

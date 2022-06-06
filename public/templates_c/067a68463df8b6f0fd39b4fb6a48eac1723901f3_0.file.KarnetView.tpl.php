@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-06-04 12:46:53
+/* Smarty version 4.1.0, created on 2022-06-06 11:17:47
   from 'C:\xampp\htdocs\trainwise\app\views\KarnetView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_629b381d2f4682_09600899',
+  'unifunc' => 'content_629dc63b0a5290_83946829',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '067a68463df8b6f0fd39b4fb6a48eac1723901f3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\trainwise\\app\\views\\KarnetView.tpl',
-      1 => 1654339571,
+      1 => 1654507066,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629b381d2f4682_09600899 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629dc63b0a5290_83946829 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_791692507629b381d2eee06_65523373', 'main');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1673889883629dc63b09ea27_40167497', 'main');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2094471252629b381d2f03f0_64168036', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1265683080629dc63b0a0733_98506578', 'content');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "indexView.tpl");
 }
 /* {block 'main'} */
-class Block_791692507629b381d2eee06_65523373 extends Smarty_Internal_Block
+class Block_1673889883629dc63b09ea27_40167497 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'main' => 
   array (
-    0 => 'Block_791692507629b381d2eee06_65523373',
+    0 => 'Block_1673889883629dc63b09ea27_40167497',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -52,23 +52,21 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'main'} */
 /* {block 'content'} */
-class Block_2094471252629b381d2f03f0_64168036 extends Smarty_Internal_Block
+class Block_1265683080629dc63b0a0733_98506578 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_2094471252629b381d2f03f0_64168036',
+    0 => 'Block_1265683080629dc63b0a0733_98506578',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-			<section id="prices" class="prices py-5 bg-light">
-				<h2>karnety</h2>
-				<div class="underline"></div>
+			<section id="prices" class="prices mt-5 bg-light">
 				<div class="container">
                 <form action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-karnet" method="post">
+karnet" method="post" class="searchForm">
 					<div class="price-wrap row text-center justify-content-center">
 						<div class="col-md-6 col-xl-4">
 							<div class="price-box">

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 
 use core\App;
@@ -8,19 +7,22 @@ use core\ParamUtils;
 use core\SessionUtils;
 use app\forms\PersonSearchForm;
 
-class UserInfoCtrl {
+class UserInfoCtrl
+{
 
-    public $keep;
-    public $cos;
+    private $login;
+    public $rola;
 
+    public function action_userInfo()
+    {
+        $login = SessionUtils::load('nazwa', true);
+        $rola = SessionUtils::load('rola', true);
 
-    public function action_userInfo() {
-    $cos = SessionUtils::load('nazwa', true);
+        $search_params['login'] = $login;
+        $where = & $search_params;
 
-        $search_params['login'] = $cos;
-        $where = &$search_params;
-
-         try {
+        try
+        {
             $this->records = App::getDB()->select("czlonkostwo", [
                 "[<]klient"=>["id_klienta" => "ID_klienta"],
                 "[>]karnet"=>["ID_karnetu" => "ID_karnetu"]],[
@@ -34,14 +36,16 @@ class UserInfoCtrl {
                 "czlonkostwo.Data_zakonczenia",
                 "karnet.Nazwa_karnetu"
                     ], $where);
-                } catch (\PDOException $e) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
-            if (App::getConf()->debug)
-                Utils::addErrorMessage($e->getMessage());
         }
-    
-       App::getSmarty()->assign('klient', $this->records);
-       App::getSmarty()->display('UserInfoView.tpl');
+        catch(\PDOException $e)
+        {
+            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
+            if (App::getConf()->debug) Utils::addErrorMessage($e->getMessage());
+        }
+
+        App::getSmarty()->assign('klient', $this->records);
+        App::getSmarty()->assign('rola', $rola);
+        App::getSmarty()->display('UserInfoView.tpl');
     }
 
 }

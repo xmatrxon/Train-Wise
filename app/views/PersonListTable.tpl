@@ -29,11 +29,19 @@
 		<p>Brak karnetu</p>	
 		{/if}
 		</td>
-        <td>{$p["aktywny"]}</td>
+		{if {$p["aktywny"]} == 1}
+			<td>TAK</td>
+		{else}
+			<td>NIE</td>
+		{/if}
 		<td>
 			<a class="btn btn-warning" href="{$conf->action_url}personEdit/{$p['id_klienta']}">Edytuj</a>
 			&nbsp;
+			{if {$p["aktywny"]} == 1}
 			<a class="btn btn-danger" href="{$conf->action_url}personDeactive/{$p['id_klienta']}">Deaktywacja</a>
+			{else}
+			<a class="btn btn-success" href="{$conf->action_url}personActivate/{$p['id_klienta']}">Aktywacja</a>
+			{/if}
 		</td>
 	</tr>
 {/strip}
@@ -41,7 +49,7 @@
 </tbody>
 </table>
 <form action="{$conf->action_root}personList" method="post">
-{if {$rekordy} <= 5}
+{if {$numberOfRecords} <= 5}
 <a class="btn btn-secondary" href="#">Poprzednia</a>
 <a class="btn btn-secondary" href="#">Następna</a>
 {else if {$page} == '' || {$page} == 0}

@@ -4,11 +4,9 @@
 {/block}
 
 {block name=content}
-			<section id="prices" class="prices py-5 bg-light">
-				<h2>karnety</h2>
-				<div class="underline"></div>
+			<section id="prices" class="prices mt-5 bg-light">
 				<div class="container">
-                <form action="{$conf->action_root}karnet" method="post">
+                <form action="{$conf->action_root}karnet" method="post" class="searchForm">
 					<div class="price-wrap row text-center justify-content-center">
 						<div class="col-md-6 col-xl-4">
 							<div class="price-box">
